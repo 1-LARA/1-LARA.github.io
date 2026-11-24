@@ -1,0 +1,28 @@
+<header class="site-header">
+  <div class="wrapper header-inner">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+
+    <nav class="site-nav" aria-label="主导航">
+      <a href="{{ '/' | relative_url }}"{% if page.url == "/" %} class="is-active" aria-current="page"{% endif %}>首页</a>
+      <a href="{{ '/categories/' | relative_url }}"{% if page.url == "/categories/" %} class="is-active" aria-current="page"{% endif %}>分类</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url == "/about/" %} class="is-active" aria-current="page"{% endif %}>关于</a>
+      {% if site.github_username and site.github_username != "" %}
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
+      {% endif %}
+    </nav>
+
+    <div class="site-search" data-search data-index-url="{{ '/search.json' | relative_url }}">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <input class="search-input" type="search" placeholder="搜索文章…"
+             aria-label="搜索文章" aria-controls="search-results"
+             aria-expanded="false" role="combobox" aria-autocomplete="list"
+             autocomplete="off" spellcheck="false">
+      <div class="search-results" id="search-results" role="listbox"
+           aria-label="搜索结果" hidden></div>
+    </div>
+  </div>
+</header>

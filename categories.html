@@ -1,0 +1,50 @@
+---
+layout: default
+title: 分类
+permalink: /categories/
+body_class: categories-page
+background_image: /assets/catagory.jpg
+background_position: center 42%
+description: 按分类浏览全部文章。
+---
+{% assign sorted_categories = site.categories | sort %}
+
+<header class="categories-header">
+  <h1 class="page-heading">分类</h1>
+  <p class="page-intro">
+    共 {{ site.posts.size }} 篇文章，{{ site.categories.size }} 个分类。
+  </p>
+</header>
+
+{% if site.categories.size > 0 %}
+  <nav class="category-cloud" aria-label="分类快速跳转">
+    {% for category in sorted_categories %}
+      <a href="#{{ category[0] | slugify }}">
+        {{ category[0] }}
+        <span class="category-count">{{ category[1].size }}</span>
+      </a>
+    {% endfor %}
+  </nav>
+
+  {% for category in sorted_categories %}
+    {% assign category_name = category[0] %}
+    {% assign category_posts = category[1] %}
+    <section class="category-group">
+      <h2 id="{{ category_name | slugify }}">
+        {{ category_name }}
+        <span class="category-count">{{ category_posts.size }}</span>
+      </h2>
+
+      <ul class="category-posts">
+        {% for post in category_posts %}
+          <li>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+{% else %}
+  <p class="empty">暂无分类。在文章头部添加 <code>categories</code> 后，这里会自动汇总。</p>
+{% endif %}

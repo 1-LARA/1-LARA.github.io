@@ -1,0 +1,56 @@
+# ===== 站点信息 =====
+title: 1_LARA 的碎碎念
+email: windycatelara@gmail.com
+description: >-
+  在寻求理解的路上走了很远, 我们才终于发现孤独是生命的本质; 即便如此, 我们仍然发明了语言, 绘画, 音乐......
+author: 1_LARA
+
+# 部署地址。本地预览时留空；部署到线上后填写完整域名。
+# 如果站点位于子路径（如 https://example.com/blog），请同时设置 baseurl。
+url: "1-LARA.github.io"
+baseurl: ""
+
+github_username: ""
+twitter_username: ""
+
+# ===== 构建设置 =====
+markdown: kramdown
+highlighter: rouge
+
+# 文章永久链接格式：/年/月/日/标题/
+permalink: /:year/:month/:day/:title/
+
+timezone: Asia/Shanghai
+future: false
+show_drafts: false
+
+# Textile 支持（.textile 文章需要该转换器）
+plugins:
+  - jekyll-textile-converter
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# 摘要分隔符：文章中插入 <!--more--> 可在首页截断
+excerpt_separator: "<!--more-->"
+
+# ===== 默认值 =====
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+# ===== 排除文件 =====
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - .jekyll-cache

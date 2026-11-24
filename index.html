@@ -1,0 +1,36 @@
+---
+layout: default
+title: 首页
+hero_image: /assets/homepage.jpg
+hero_image_webp: /assets/homepage.webp
+hero_width: 1200
+hero_height: 906
+hero_alt: 树叶与红色果实间看手机的女孩
+hero_title: "1-LARA's Blog"
+---
+<div class="home">
+  <h2 class="page-heading">最新文章</h2>
+
+  {% if site.posts.size == 0 %}
+    <p class="empty">还没有文章。在 <code>_posts</code> 目录中添加一篇吧。</p>
+  {% else %}
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li>
+          <div class="post-list-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            {% if post.categories.size > 0 %}
+              <span class="post-list-categories">{{ post.categories | join: " / " }}</span>
+            {% endif %}
+          </div>
+          <h2 class="post-list-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+          <p class="post-list-excerpt">
+            {{ post.content | strip_html | strip_newlines | truncate: 140 }}
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
