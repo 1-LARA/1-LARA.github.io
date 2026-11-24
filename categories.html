@@ -3,18 +3,20 @@ layout: default
 title: 分类
 permalink: /categories/
 body_class: categories-page
-background_image: /assets/catagory.jpg
-background_position: center 42%
+hero_image: /assets/catagory.jpg
+hero_image_webp: /assets/catagory.webp
+hero_width: 1200
+hero_height: 833
+hero_position: center 45%
+hero_title: "分类"
+hero_alt: 黄色花朵与瓢虫的插画
 description: 按分类浏览全部文章。
 ---
 {% assign sorted_categories = site.categories | sort %}
 
-<header class="categories-header">
-  <h1 class="page-heading">分类</h1>
-  <p class="page-intro">
-    共 {{ site.posts.size }} 篇文章，{{ site.categories.size }} 个分类。
-  </p>
-</header>
+<p class="page-intro">
+  共 {{ site.posts.size }} 篇文章，{{ site.categories.size }} 个分类。
+</p>
 
 {% if site.categories.size > 0 %}
   <nav class="category-cloud" aria-label="分类快速跳转">

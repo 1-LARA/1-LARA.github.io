@@ -1,0 +1,50 @@
+---
+layout: default
+title: 友链
+permalink: /friends/
+body_class: links-page
+hero_image: /assets/friends.jpg
+hero_image_webp: /assets/friends.webp
+hero_width: 1200
+hero_height: 849
+hero_position: center 55%
+hero_title: "友链"
+hero_alt: 夜色中围坐在水边的朋友
+description: 友情链接与值得一读的博客。
+---
+
+<p class="page-intro">一些值得一读的博客和朋友。</p>
+
+<ul class="friend-list">
+  <li class="friend-card">
+    <a class="friend-avatar-link" href="https://elecannoic.com" target="_blank" rel="noopener noreferrer">
+      <img class="friend-avatar"
+           src="{{ '/assets/friends/elecannonic.jpg' | relative_url }}"
+           alt="EleCannonic's Blog 头像"
+           width="144" height="144">
+    </a>
+    <div class="friend-info">
+      <h2 class="friend-name">
+        <a href="https://elecannoic.com" target="_blank" rel="noopener noreferrer">EleCannonic's Blog</a>
+      </h2>
+      <p class="friend-desc">Exploring everything.</p>
+      <a class="friend-link" href="https://elecannoic.com" target="_blank" rel="noopener noreferrer">
+        elecannoic.com →
+      </a>
+    </div>
+  </li>
+</ul>
+
+{% if 1 %}
+  <section class="discussion-section" id="discussion">
+    <h2>GitHub 讨论区</h2>
+    <p>
+      夫人之相与，俯仰一世，或取诸怀抱，悟言一室之内；或因寄所托，放浪形骸之外
+    </p>
+    {% include giscus.html mapping="number" term="1" %}
+    <p class="discussion-hint">
+      <a href="{{ site.github_discussions_url }}"
+         target="_blank" rel="noopener noreferrer">在 GitHub 中打开讨论 →</a>
+    </p>
+  </section>
+{% endif %}

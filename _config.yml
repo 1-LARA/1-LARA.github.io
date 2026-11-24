@@ -13,6 +13,18 @@ baseurl: ""
 github_username: ""
 twitter_username: ""
 
+# 友链页的 GitHub 讨论区入口
+# 请确认仓库已开启 Discussions，并替换为你的实际仓库地址
+github_discussions_url: "https://github.com/1-LARA/1-LARA.github.io/discussions"
+
+# GitHub Discussions 评论区（由 giscus 提供）
+giscus:
+  repo: "1-LARA/1-LARA.github.io"
+  repo_id: "R_kgDOV566Zw"
+  category: "Announcements"
+  category_id: "DIC_kwDOV566Z84DL3M0"
+  lang: "zh-CN"
+
 # ===== 构建设置 =====
 markdown: kramdown
 highlighter: rouge

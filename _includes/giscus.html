@@ -1,0 +1,62 @@
+{% assign giscus_mapping = include.mapping | default: "pathname" %}
+<script src="{{ '/assets/js/giscus-fallback.js' | relative_url }}"></script>
+<div class="giscus-block" data-giscus>
+  <div class="giscus-container">
+    <script>
+      (function () {
+        window.__giscusReady = false;
+        window.addEventListener("message", function (event) {
+          if (event.origin !== "https://giscus.app") return;
+          var data = event.data;
+          if (!data || !data.giscus) return;
+          if (typeof data.giscus.resizeHeight !== "number") return;
+
+          window.__giscusReady = true;
+          if (typeof window.__giscusOnReady === "function") {
+            window.__giscusOnReady();
+          }
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var container = document.currentScript.parentNode;
+        var theme = document.documentElement.getAttribute("data-theme") === "dark"
+          ? "dark"
+          : "light";
+        var script = document.createElement("script");
+
+        script.src = "https://giscus.app/client.js";
+        script.async = true;
+        script.crossOrigin = "anonymous";
+
+        var config = {
+          "data-repo": {{ site.giscus.repo | jsonify }},
+          "data-repo-id": {{ site.giscus.repo_id | jsonify }},
+          "data-category": {{ site.giscus.category | jsonify }},
+          "data-category-id": {{ site.giscus.category_id | jsonify }},
+          "data-mapping": {{ giscus_mapping | jsonify }},
+          {% if include.term %}"data-term": {{ include.term | jsonify }},{% endif %}
+          "data-strict": "0",
+          "data-reactions-enabled": "1",
+          "data-emit-metadata": "0",
+          "data-input-position": "bottom",
+          "data-theme": theme,
+          "data-lang": {{ site.giscus.lang | default: "zh-CN" | jsonify }},
+          "data-loading": "lazy"
+        };
+
+        Object.keys(config).forEach(function (key) {
+          script.setAttribute(key, config[key]);
+        });
+
+        container.appendChild(script);
+      })();
+    </script>
+  </div>
+  <p class="giscus-fallback" hidden>
+    评论区暂时无法加载，请前往
+    <a href="{{ site.github_discussions_url }}" target="_blank" rel="noopener noreferrer">GitHub 讨论区</a>
+    留言。
+  </p>
+</div>
