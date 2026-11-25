@@ -13,15 +13,45 @@ hero_alt: 黄色花朵与瓢虫的插画
 description: 按分类浏览全部文章。
 ---
 {% assign sorted_categories = site.categories | sort %}
+{% assign sorted_tags = site.tags | sort %}
 
 <p class="page-intro">
   共 {{ site.posts.size }} 篇文章，{{ site.categories.size }} 个分类。
 </p>
 
+{% if sorted_tags.size > 0 %}
+  <section class="tag-filter" data-tag-filter aria-labelledby="tag-filter-title">
+    <div class="tag-filter-head">
+      <h2 class="tag-filter-title" id="tag-filter-title">标签筛选</h2>
+      <div class="tag-filter-actions">
+        <div class="tag-mode" role="group" aria-label="标签匹配方式">
+          <button type="button" class="tag-mode-btn is-active" data-tag-mode="any" aria-pressed="true">任一</button>
+          <button type="button" class="tag-mode-btn" data-tag-mode="all" aria-pressed="false">全部</button>
+        </div>
+        <button type="button" class="tag-clear" data-tag-clear hidden>清除</button>
+      </div>
+    </div>
+
+    <div class="tag-filter-list">
+      {% for tag in sorted_tags %}
+        <button type="button" class="tag-filter-chip"
+                data-tag="{{ tag[0] | escape }}" aria-pressed="false">
+          #{{ tag[0] }}
+          <span class="tag-count">{{ tag[1].size }}</span>
+        </button>
+      {% endfor %}
+    </div>
+
+    <p class="tag-filter-status" data-tag-status>
+      选择标签筛选文章；选择多个标签时可切换“任一 / 全部”。
+    </p>
+  </section>
+{% endif %}
+
 {% if site.categories.size > 0 %}
   <nav class="category-cloud" aria-label="分类快速跳转">
     {% for category in sorted_categories %}
-      <a href="#{{ category[0] | slugify }}">
+      <a href="#{{ category[0] | slugify }}" data-category-link="{{ category[0] | escape }}">
         {{ category[0] }}
         <span class="category-count">{{ category[1].size }}</span>
       </a>
@@ -31,15 +61,16 @@ description: 按分类浏览全部文章。
   {% for category in sorted_categories %}
     {% assign category_name = category[0] %}
     {% assign category_posts = category[1] %}
-    <section class="category-group">
+    <section class="category-group" data-category-section="{{ category_name | escape }}">
       <h2 id="{{ category_name | slugify }}">
         {{ category_name }}
-        <span class="category-count">{{ category_posts.size }}</span>
+        <span class="category-count" data-visible-count>{{ category_posts.size }}</span>
       </h2>
 
       <ul class="category-posts">
         {% for post in category_posts %}
-          <li>
+          <li data-tags="{{ post.tags | jsonify | escape }}"
+              data-post-url="{{ post.url | relative_url | escape }}">
             <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           </li>
@@ -47,6 +78,10 @@ description: 按分类浏览全部文章。
       </ul>
     </section>
   {% endfor %}
+
+  <p class="empty filter-empty" data-filter-empty hidden>没有符合筛选条件的文章。</p>
 {% else %}
   <p class="empty">暂无分类。在文章头部添加 <code>categories</code> 后，这里会自动汇总。</p>
 {% endif %}
+
+<script src="{{ '/assets/js/categories.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

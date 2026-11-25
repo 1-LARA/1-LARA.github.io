@@ -1,16 +1,17 @@
 # ===== 站点信息 =====
-title: 1_LARA 的碎碎念
+title: 1_LARA 的一隅
 email: windycatelara@gmail.com
 description: >-
   在寻求理解的路上走了很远, 我们才终于发现孤独是生命的本质; 即便如此, 我们仍然发明了语言, 绘画, 音乐......
 author: 1_LARA
 
 # 部署地址。本地预览时留空；部署到线上后填写完整域名。
-# 如果站点位于子路径（如 https://example.com/blog），请同时设置 baseurl。
-url: "1-LARA.github.io"
+# 这是用户站点仓库（1-LARA/1-LARA.github.io），部署在域名根目录，
+# 因此 baseurl 必须为空。项目站点才需要设置 baseurl: "/仓库名"。
+url: "https://1-lara.github.io"
 baseurl: ""
 
-github_username: ""
+github_username: "1-LARA"
 twitter_username: ""
 
 # 友链页的 GitHub 讨论区入口

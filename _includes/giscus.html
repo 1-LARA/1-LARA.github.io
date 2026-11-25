@@ -1,5 +1,5 @@
 {% assign giscus_mapping = include.mapping | default: "pathname" %}
-<script src="{{ '/assets/js/giscus-fallback.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/giscus-fallback.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 <div class="giscus-block" data-giscus>
   <div class="giscus-container">
     <script>

@@ -4,19 +4,7 @@
   var root = document.documentElement;
   var toggle = document.querySelector("[data-theme-toggle]");
   var storageKey = "theme";
-  var media = window.matchMedia
-    ? window.matchMedia("(prefers-color-scheme: dark)")
-    : null;
   var pendingGiscusSync = false;
-
-  function storedTheme() {
-    try {
-      var value = localStorage.getItem(storageKey);
-      return value === "dark" || value === "light" ? value : null;
-    } catch (error) {
-      return null;
-    }
-  }
 
   function currentTheme() {
     return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
@@ -74,18 +62,5 @@
 
   updateToggle(currentTheme());
 
-  if (media) {
-    var handleSystemChange = function (event) {
-      if (storedTheme()) return;
-      applyTheme(event.matches ? "dark" : "light", false);
-    };
-
-    if (media.addEventListener) {
-      media.addEventListener("change", handleSystemChange);
-    } else if (media.addListener) {
-      media.addListener(handleSystemChange);
-    }
-  }
-
-  // 主题切换时同步已加载的 giscus 评论区
+  // 主题由用户手动切换并持久化，不再跟随系统自动变化
 })();
